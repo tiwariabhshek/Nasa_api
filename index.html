@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nasa API Images</title>
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  </head>
+  <body>
+    <form method="post" action="index.php">
+      <h1>Nasa images of the day</h1>
+
+      <p>
+        Date: <input type="text" id="datepicker" name="datepicker" /><button value="datepicker">Search</button>
+      </p>
+    </form>
+    <form method="post" action="index.php"> 
+      <p>
+        <label for="from">From</label>
+        <input type="text" id="from" name="from" />
+        <label for="to">to</label>
+        <input type="text" id="to" name="to" />
+        <button value="datepicker">Search</button>
+      </p>
+    </form>
+  </body>
+  <script>
+    $(function () {
+      $("#datepicker").datepicker({
+        minDate: -1827,
+        maxDate: "<?php echo date('YYYY-mm-dd'); ?>",
+        dateFormat: "yy-mm-dd",
+      });
+    });
+
+    $(function multiImages() {
+      var dateFormat = "yy/mm/dd",
+        from = $("#from")
+          .datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            minDate: -1827,
+            dateFormat: "yy-mm-dd",
+          })
+          .on("change", function () {
+            to.datepicker("option", "minDate", getDate(this));
+          }),
+        to = $("#to")
+          .datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            maxDate: "<?php echo date('YYYY-mm-dd'); ?>",
+            dateFormat: "yy-mm-dd",
+          })
+          .on("change", function () {
+            from.datepicker("option", "maxDate", getDate(this));
+          });
+    });
+  </script>
+</html>
